@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+      table {
+          font-family: arial, sans-serif;
+          border-collapse: collapse;
+          width: 100%;
+      }
+
+      td, th {
+          border: 1px solid #dddddd;
+          text-align: left;
+          padding: 8px;
+      }
+
+      tr:nth-child(even) {
+          background-color: #dddddd;
+      }
+  </style>
+</head>
+<body>
+
+<h1>Users</h1>
+
+<h1>Thông tin người dùng</h1>
+
+<table>
+  <tbody>
+  <tr>
+    <th>Tên:</th>
+    <td><%= @user.name %></td>
+  </tr>
+  <tr>
+    <th>Email:</th>
+    <td><%= @user.email %></td>
+  </tr>
+  <tr>
+    <th>Tạo vào:</th>
+    <td><%= @user.created_at %></td>
+  </tr>
+  <tr>
+    <th>Cập nhật lần cuối:</th>
+    <td><%= @user.updated_at %></td>
+  </tr>
+  </tbody>
+</table>
+
+<p><%= link_to 'Sửa', edit_user_path(@user) %> | <%= link_to 'Xóa', user_path(@user), method: :delete, data: { confirm: 'Bạn có chắc chắn muốn xóa người dùng này không?' } %> | <%= link_to 'Quay lại', users_path %></p>
+
+<form action="<%= user_path(@user) %>>" method="delete">
+  <input type="submit" value="Xóa">
+</form>
+
+</body>
+</html>
+

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+      table {
+          font-family: arial, sans-serif;
+          border-collapse: collapse;
+          width: 100%;
+      }
+
+      td, th {
+          border: 1px solid #dddddd;
+          text-align: left;
+          padding: 8px;
+      }
+
+      tr:nth-child(even) {
+          background-color: #dddddd;
+      }
+  </style>
+</head>
+<body>
+
+<h1>Users</h1>
+
+<h1>Danh sách người dùng </h1>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    var message = '<%= flash[:notice] || flash[:error] %>';
+    if (message) {
+        Swal.fire({
+            icon: 'success', // hoặc 'error'
+            title: message,
+            confirmButtonText: 'OK'
+        });
+    }
+</script>
+
+
+
+<table>
+  <thead>
+  <tr>
+    <th>Tên</th>
+    <th>Email</th>
+    <th>Hành động</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @users.each do |user| %>
+    <tr>
+      <td><%= user.name %></td>
+      <td><%= user.email %></td>
+      <td>
+        <%= link_to 'Xem', user_path(user) %>
+        <%= link_to 'Sửa', edit_user_path(user) %>
+        <%= link_to 'Xóa', user_path(user), method: :delete, data: { confirm: 'Bạn có chắc chắn muốn xóa người dùng này không?' } %>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<p><%= link_to 'Thêm người dùng', new_user_path %></p>
+
+
+</body>
+</html>
+
